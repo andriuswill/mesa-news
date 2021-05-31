@@ -1,10 +1,8 @@
 package com.andriuswill.mesa_news.api
 
-import com.andriuswill.mesa_news.data.HighLightsResponse
 import com.andriuswill.mesa_news.data.LoginRequest
 import com.andriuswill.mesa_news.data.SignUpRequest
 import com.andriuswill.mesa_news.extensions.saveMainThread
-import io.reactivex.rxjava3.core.Single
 
 class RepositoryImpl(
     private val api: Api
@@ -14,7 +12,7 @@ class RepositoryImpl(
         body: LoginRequest
     ) = api.login(
         body = body
-    )
+    ).saveMainThread()
 
     override fun signup(
         body: SignUpRequest

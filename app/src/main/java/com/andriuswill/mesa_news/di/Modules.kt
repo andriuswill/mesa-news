@@ -13,10 +13,10 @@ import org.koin.dsl.module
 
 val viewModelModule = module(override = true) {
     viewModel {
-        LoginViewModel()
+        LoginViewModel(get())
     }
     viewModel {
-        SignUpViewModel()
+        SignUpViewModel(get())
     }
     viewModel {
         HomeViewModel(get())

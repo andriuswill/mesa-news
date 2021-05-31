@@ -3,7 +3,9 @@ package com.andriuswill.mesa_news.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import com.andriuswill.mesa_news.R
+import com.andriuswill.mesa_news.databinding.ActivityHomeBinding
 import com.andriuswill.mesa_news.databinding.ActivityLoginBinding
 import com.andriuswill.mesa_news.viewmodels.HomeViewModel
 import com.andriuswill.mesa_news.viewmodels.LoginViewModel
@@ -18,10 +20,13 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityLoginBinding.inflate(layoutInflater).apply {
+        binding = DataBindingUtil.setContentView<ActivityLoginBinding>(
+            this,
+            R.layout.activity_login
+        ).apply {
             viewmodel = this@LoginActivity.viewmodel
+            lifecycleOwner = this@LoginActivity
         }
-        setContentView(binding.root)
 
         with(viewmodel){
             action.subscribe(::observeActions)
@@ -29,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToHome() {
+        finishAffinity()
         startActivity(
             Intent(this, HomeActivity::class.java)
         )

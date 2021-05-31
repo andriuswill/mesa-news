@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.andriuswill.mesa_news.viewmodels.SignUpViewModel" />
@@ -21,6 +22,7 @@
             android:layout_marginEnd="@dimen/space_medium"
             android:layout_marginBottom="@dimen/space_medium"
             android:hint="@string/signup_hint_name"
+            android:visibility="@{viewmodel.fieldsVisibility}"
             app:boxBackgroundColor="@android:color/transparent"
             app:boxBackgroundMode="outline"
             app:layout_constraintBottom_toTopOf="@+id/tf_password"
@@ -33,7 +35,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName"
+                android:text="@={viewmodel.nameValue}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,6 +48,7 @@
             android:layout_marginEnd="@dimen/space_medium"
             android:layout_marginBottom="@dimen/space_medium"
             android:hint="@string/signup_hint_email"
+            android:visibility="@{viewmodel.fieldsVisibility}"
             app:boxBackgroundColor="@android:color/transparent"
             app:boxBackgroundMode="outline"
             app:layout_constraintBottom_toTopOf="@+id/tv_email"
@@ -56,7 +60,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:text="@={viewmodel.emailValue}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,6 +73,7 @@
             android:layout_marginEnd="@dimen/space_medium"
             android:layout_marginBottom="@dimen/space_large"
             android:hint="@string/signup_hint_password"
+            android:visibility="@{viewmodel.fieldsVisibility}"
             app:boxBackgroundColor="@android:color/transparent"
             app:boxBackgroundMode="outline"
             app:layout_constraintBottom_toTopOf="@+id/button_login"
@@ -79,7 +85,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:text="@={viewmodel.passwordValue}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,11 +95,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/signup_button_signup"
+            android:onClick="@{() -> viewmodel.doSignUp()}"
+            android:visibility="@{viewmodel.fieldsVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+
+
+        <ProgressBar
+            android:id="@+id/loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewmodel.loaderVisibility}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
