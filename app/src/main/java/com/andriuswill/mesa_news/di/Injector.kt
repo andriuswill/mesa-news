@@ -6,6 +6,7 @@ object Injector {
 
     fun init() = arrayListOf<Module>().apply {
         add(viewModelModule)
+        add(apiModule)
     }
 
 }

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.andriuswill.mesa_news">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -13,7 +15,8 @@
         android:theme="@style/Theme.Mesanews"
         tools:ignore="AllowBackup">
 
-        <activity android:name=".activities.LoginActivity">
+        <activity android:name=".activities.LoginActivity"
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -23,6 +26,7 @@
         <activity
             android:name=".activities.HomeActivity"
             android:screenOrientation="fullSensor" />
+
         <activity
             android:name=".activities.SignUpActivity"
             android:screenOrientation="fullSensor" />
